@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 function Navbar(){
     return(
         <nav>
@@ -8,7 +9,7 @@ function Navbar(){
                 <div className="flex self-center">
                     <a href="#" className="px-4 text-base font-medium leading-6 text-white tracking-[0.2px]">Home</a>
                     <a href="#" className="px-4 text-base font-medium leading-6 text-white tracking-[0.2px]">Products</a>
-                    <a href="#" className="px-4 text-base font-medium leading-6 text-white tracking-[0.2px]">Your Cart</a>
+                    <Link to="/cart" className="px-4 text-base font-medium leading-6 text-white tracking-[0.2px]">Your Cart</Link>
                     <a href="#" className="px-4 text-base font-medium leading-6 text-white tracking-[0.2px]">login</a>
                 </div>    
             </div>
