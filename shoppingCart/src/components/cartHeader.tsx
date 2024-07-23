@@ -9,7 +9,7 @@ type cartHeaderProps ={
 export default function CartHeader({subtotal} : cartHeaderProps) {
     return(
         <div className="w-2/5">
-            <Card className="m-20 px-20">
+            <Card className="m-20">
                 <h2 className="text-center pt-10 text-2xl font-medium">Your Cart</h2>
                 <h3 className="text-lg font-base text-center pt-5">Subtotal  ${subtotal}</h3>
                 <CardFooter className="flex flex-col px-20 gap-2 mt-5">

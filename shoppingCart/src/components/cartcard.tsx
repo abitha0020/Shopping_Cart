@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 import {
     Card,
     CardContent,
-    CardDescription,
     CardFooter,
     CardHeader,
     CardTitle,
@@ -18,6 +17,14 @@ export default function CartCard({ products } : cartCardProps) {
     useEffect(() => {
         setItem(products)
     },[products]);
+
+    const RemoveItem = (product: Product) => {
+        if (items) {
+            const updatedItems = items.filter(item => item.id !== product.id);
+            setItem(updatedItems);
+            localStorage.setItem("cartitems", JSON.stringify(updatedItems));
+        }
+    }
     
     return(
         <div className="px-20">
@@ -33,7 +40,7 @@ export default function CartCard({ products } : cartCardProps) {
                             </CardContent>
                             <CardFooter className="flex justify-between ">
                                 <p>Total: ${product.price}</p>
-                                <Button variant={"destructive"}> Remove</Button>
+                                <Button variant={"destructive"} onClick={() => RemoveItem(product)}> Remove</Button>
                             </CardFooter>
                         </Card>
                     </div>
