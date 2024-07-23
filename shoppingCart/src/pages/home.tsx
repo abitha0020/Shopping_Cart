@@ -1,7 +1,10 @@
+import Navbar from "@/components/navbar";
+import ProductCard from "@/components/productcard";
 export default function Home(){
     return(
         <div>
-            home
+            <Navbar />
+            <ProductCard />
         </div>
     );
 }
