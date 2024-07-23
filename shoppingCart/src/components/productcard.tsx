@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Button } from "./ui/button";
+import { Product } from "./producttype";
 import {
     Card,
     CardContent,
@@ -9,14 +10,6 @@ import {
     CardTitle,
   } from "@/components/ui/card";
   
-interface Product {
-    id : number,
-    title : string,
-    price : number,
-    description : string,
-    category : string
-    image: string; 
-}
 
 export default function ProductCard () {
    const [result, setResult] = useState<Product[] | null>(null); 
