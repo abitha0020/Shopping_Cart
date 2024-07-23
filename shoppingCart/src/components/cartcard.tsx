@@ -9,36 +9,34 @@ import {
     CardTitle,
   } from "@/components/ui/card";
 import { Button } from "./ui/button";
-export default function CartCard() {
+interface cartCardProps {
+    products : Product[] | null;
+}
+
+export default function CartCard({ products } : cartCardProps) {
     const [items, setItem] = useState<Product[] |null>(null);
     useEffect(() => {
-        const storedItems = localStorage.getItem("cartitems");
-        if (storedItems) {
-            setItem(JSON.parse(storedItems));
-        }
-        console.log(items);
-    });
+        setItem(products)
+    },[products]);
     
     return(
-        <div>
+        <div className="px-20">
             {items?(
                 items.map((product) => (
-                    <Card className="flex justify-between flex-col w-[500px] mx-auto" key={product.id} >
-                    <CardHeader>
-                      <CardTitle>{product.title}</CardTitle>
-                      <CardDescription>{product.description}</CardDescription>
-                    </CardHeader>
-                    <CardContent>
-                        <img src={product.image} alt={product.title} className="w-[100px] h-[100px] mx-auto" /> 
-                        <div className="">
-                            <p>Price: ${product.price}</p>
-                            <p>Category: {product.category}</p>
-                        </div>
-                    </CardContent>
-                    <CardFooter className="flex justify-end ">
-                        <Button variant={"destructive"}> Remove</Button>
-                    </CardFooter>
-                  </Card>
+                    <div className="mt-5">
+                        <Card className=" mx-auto" key={product.id} >
+                            <CardHeader>
+                            <CardTitle>{product.title}</CardTitle>
+                            </CardHeader>
+                            <CardContent>
+                                <img src={product.image} alt={product.title} className="w-[100px] h-[100px] mx-auto" /> 
+                            </CardContent>
+                            <CardFooter className="flex justify-between ">
+                                <p>Total: ${product.price}</p>
+                                <Button variant={"destructive"}> Remove</Button>
+                            </CardFooter>
+                        </Card>
+                    </div>
                 ))
             ):(
                 <p>You Havent selected anything</p>
