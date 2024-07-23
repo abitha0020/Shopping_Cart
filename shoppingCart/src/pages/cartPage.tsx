@@ -7,7 +7,6 @@ import CartHeader from "@/components/cartHeader";
 export default function CartPage() {
     const [items, setItem] = useState<Product[] |null>(null);
     const [subtotal, setSubtotal] = useState<number>(0);
-    const [count , setCount] = useState<number>(0);
     useEffect(() => {
         const storedItems = localStorage.getItem("cartitems");
         if (storedItems) {

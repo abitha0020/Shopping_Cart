@@ -31,7 +31,7 @@ export default function CartCard({ products } : cartCardProps) {
             {items?(
                 items.map((product) => (
                     <div className="mt-5">
-                        <Card className=" mx-auto" key={product.id} >
+                        <Card className=" mx-auto w-full" key={product.id} >
                             <CardHeader>
                             <CardTitle>{product.title}</CardTitle>
                             </CardHeader>

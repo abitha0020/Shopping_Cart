@@ -26,7 +26,7 @@ export default function ProductCard () {
    const addToCart = (product : Product) => {
        const storedCartItems = localStorage.getItem("cartitems");
        const cartItems: Product[] = storedCartItems ? JSON.parse(storedCartItems) : [];
-
+       
        cartItems.push(product);
        localStorage.setItem("cartitems", JSON.stringify(cartItems))
        console.log(cartItems);

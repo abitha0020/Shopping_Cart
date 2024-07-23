@@ -7,8 +7,8 @@ function Navbar(){
                     <p className="text-white text-3xl">Shopping App</p>
                 </div>
                 <div className="flex self-center">
-                    <a href="#" className="px-4 text-base font-medium leading-6 text-white tracking-[0.2px]">Home</a>
-                    <a href="#" className="px-4 text-base font-medium leading-6 text-white tracking-[0.2px]">Products</a>
+                    <Link to="/" className="px-4 text-base font-medium leading-6 text-white tracking-[0.2px]">Home</Link>
+                    <Link to="/" className="px-4 text-base font-medium leading-6 text-white tracking-[0.2px]">Products</Link>
                     <Link to="/cart" className="px-4 text-base font-medium leading-6 text-white tracking-[0.2px]">Your Cart</Link>
                     <a href="#" className="px-4 text-base font-medium leading-6 text-white tracking-[0.2px]">login</a>
                 </div>    
