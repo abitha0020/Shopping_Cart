@@ -21,7 +21,7 @@ interface Product {
 export default function ProductCard () {
    const [result, setResult] = useState<Product[] | null>(null); 
    useEffect(()=>{
-    fetch('https://fakestoreapi.com/products?limit=9')
+    fetch('https://fakestoreapi.com/products?')
     .then(res=>res.json())
     .then(json=>setResult(json))
     .catch(error => console.error('Error fetching data:', error));
@@ -30,12 +30,20 @@ export default function ProductCard () {
    if (result !== null) {
     console.log(result[0].title)
    }
-   
+   const addToCart = (product : Product) => {
+       const storedCartItems = localStorage.getItem("cartitems");
+       const cartItems: Product[] = storedCartItems ? JSON.parse(storedCartItems) : [];
+
+       cartItems.push(product);
+       localStorage.setItem("cartitems", JSON.stringify(cartItems))
+       console.log(cartItems);
+
+   }
    return (
     <div className="p-20 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
        {result ?(
         result.map((product) => (
-            <Card className="flex justify-between flex-col">
+            <Card className="flex justify-between flex-col" key={product.id}>
             <CardHeader>
               <CardTitle>{product.title}</CardTitle>
               <CardDescription>{product.description}</CardDescription>
@@ -48,7 +56,7 @@ export default function ProductCard () {
                 </div>
             </CardContent>
             <CardFooter className="flex justify-between ">
-                <Button> Add To Cart</Button>  
+                <Button onClick={() => addToCart(product)}> Add To Cart</Button>  
                 <Button variant={"destructive"}> More Details</Button>
             </CardFooter>
           </Card>
@@ -59,3 +67,4 @@ export default function ProductCard () {
     </div>
    ); 
 }
+
