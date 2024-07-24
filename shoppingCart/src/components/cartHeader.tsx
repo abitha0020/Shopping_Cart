@@ -8,6 +8,9 @@ type cartHeaderProps ={
 }
 
 export default function CartHeader({subtotal , count} : cartHeaderProps) {
+    const clearcart = () =>{
+        localStorage.setItem("cartitems", JSON.stringify([]));
+    } 
     return(
         <div className="w-2/5">
             <Card className="m-20">
@@ -15,7 +18,7 @@ export default function CartHeader({subtotal , count} : cartHeaderProps) {
                 <h3 className="text-lg font-base text-center pt-5">Subtotal  ${subtotal}</h3>
                 <CardFooter className="flex flex-col px-20 gap-2 mt-5">
                     <Button variant={"destructive"}>Proceed to buy</Button>
-                    <Button> Clear Cart</Button>
+                    <Button onClick={clearcart}> Clear Cart</Button>
                 </CardFooter>
             </Card>
         </div>
