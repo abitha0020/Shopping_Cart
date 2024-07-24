@@ -14,6 +14,9 @@ export default function CartHeader({subtotal , count} : cartHeaderProps) {
         if (count > 0) {
             setEmpty(false);
         }
+        else {
+            setEmpty(true);
+        }
     },[count])
     const clearcart = () =>{
         localStorage.setItem("cartitems", JSON.stringify([]));
