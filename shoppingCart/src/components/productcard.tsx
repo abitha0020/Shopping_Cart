@@ -13,23 +13,30 @@ import {
 
 export default function ProductCard () {
    const [result, setResult] = useState<Product[] | null>(null); 
+   const [addedItems, setAddedItems] = useState<number[]>([]);
+
    useEffect(()=>{
     fetch('https://fakestoreapi.com/products?')
     .then(res=>res.json())
     .then(json=>setResult(json))
     .catch(error => console.error('Error fetching data:', error));
+
+    const storedCartItems = localStorage.getItem("cartitems");
+    if (storedCartItems) {
+      const cartitems : Product[] = JSON.parse(storedCartItems);
+      const cartitemsid =  cartitems.map((items) => items.id);
+      setAddedItems(cartitemsid);
+    }
    },[]);
-   console.log({result});
-   if (result !== null) {
-    console.log(result[0].title)
-   }
+   
    const addToCart = (product : Product) => {
        const storedCartItems = localStorage.getItem("cartitems");
        const cartItems: Product[] = storedCartItems ? JSON.parse(storedCartItems) : [];
        
        cartItems.push(product);
        localStorage.setItem("cartitems", JSON.stringify(cartItems))
-       console.log(cartItems);
+
+       setAddedItems((prevAddedItems) => [...prevAddedItems, product.id]);
 
    }
    return (
@@ -49,7 +56,9 @@ export default function ProductCard () {
                 </div>
             </CardContent>
             <CardFooter className="flex justify-between ">
-                <Button onClick={() => addToCart(product)}> Add To Cart</Button>  
+                <Button onClick={() => addToCart(product)} disabled={addedItems.includes(product.id)}>
+                  {addedItems.includes(product.id) ? "Added ✔️" : "Add To Cart"}
+                </Button>  
                 <Button variant={"destructive"}> More Details</Button>
             </CardFooter>
           </Card>
