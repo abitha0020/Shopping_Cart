@@ -9,6 +9,8 @@ import {
     CardHeader,
     CardTitle,
   } from "@/components/ui/card";
+import { lineSpinner } from 'ldrs'
+
   
 
 export default function ProductCard () {
@@ -39,6 +41,7 @@ export default function ProductCard () {
        setAddedItems((prevAddedItems) => [...prevAddedItems, product.id]);
 
    }
+   lineSpinner.register()
    return (
     <div className="p-20 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
        {result ?(
@@ -64,7 +67,14 @@ export default function ProductCard () {
           </Card>
         ))
        ):(
-        <p>loading..</p>
+        <div className="grid place-content-center">
+          <l-line-spinner
+            size="40"
+            stroke="3"
+            speed="1" 
+            color="black" 
+          ></l-line-spinner>  
+        </div>
        )}
     </div>
    ); 
